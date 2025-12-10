@@ -75,6 +75,7 @@ function listHandler<T extends Record<string, unknown>>(
   searchableKeys: (keyof T)[], // fields to search
   forceError = false
 ) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return async ({ request }: any) => {
     try {
       await delay();
