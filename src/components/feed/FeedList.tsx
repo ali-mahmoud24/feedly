@@ -1,10 +1,11 @@
-import { useInView } from "react-intersection-observer";
-import { Button } from "@/components/ui/button";
-import { FeedCard } from "./FeedCard";
-import { useUsersInfiniteQuery } from "@/hooks/useUsers";
-import { FeedSkeletonCard } from "./FeedSkeletonCard";
 import { motion } from "framer-motion";
-import { Spinner } from "../ui/Spinner";
+import { useInView } from "react-intersection-observer";
+
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/Spinner";
+import { FeedCard } from "./FeedCard";
+import { FeedSkeletonCard } from "./FeedSkeletonCard";
+import { useUsersInfiniteQuery } from "@/hooks/useUsers";
 
 
 export function FeedList({ search }: { search: string }) {
@@ -20,7 +21,7 @@ export function FeedList({ search }: { search: string }) {
 
   const { ref } = useInView({
     threshold: 0,
-    rootMargin: "500px",
+    rootMargin: "800px",
     onChange: (inView) => {
       if (inView && hasNextPage && !isFetchingNextPage) {
         fetchNextPage();
