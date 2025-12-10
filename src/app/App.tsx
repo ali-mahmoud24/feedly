@@ -1,10 +1,10 @@
-function App() {
+import Feeds from '@/components/feed/Feeds';
+import Layout from '@/layout/Layout';
 
+export default function App() {
   return (
-    <>
-      <h1>Infinite Scroll Feed</h1>
-    </>
-  )
+    <Layout>
+      <Feeds />
+    </Layout>
+  );
 }
-
-export default App
