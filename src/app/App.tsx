@@ -1,10 +1,10 @@
-import Feeds from '@/components/feed/Feeds';
+import Feed from '@/components/feed/Feed';
 import Layout from '@/layout/Layout';
 
 export default function App() {
   return (
     <Layout>
-      <Feeds />
+      <Feed />
     </Layout>
   );
 }

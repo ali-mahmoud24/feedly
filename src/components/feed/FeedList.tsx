@@ -45,7 +45,7 @@ export function FeedList({ search }: { search: string }) {
         </>
       )}
 
-      {/* No items found (animated) */}
+      {/* No items found */}
       {!isFetching && !isError && totalItems === 0 && (
         <motion.div
           className="text-center text-sm text-muted-foreground col-span-full py-8"

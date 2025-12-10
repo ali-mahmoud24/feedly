@@ -3,8 +3,7 @@ import { FeedList } from "./FeedList";
 import { useState } from "react";
 import { UserSearch } from "./UserSearch";
 
-export default function Feeds() {
-
+export default function Feed() {
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 400);
 

@@ -1,42 +1,3 @@
-// import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-// import type { User } from "@/hooks/useUsers";
-
-// interface FeedCardProps {
-//     item: User
-// }
-
-// export function FeedCard({ item }: FeedCardProps) {
-//     return (
-//         <Card className="w-full rounded-xl shadow hover:shadow-md transition p-4 flex flex-col h-full">
-
-//             <CardHeader className="flex flex-row items-center gap-4 p-0">
-//                 <Avatar className="w-12 h-12">
-//                     <AvatarImage src={item.avatarUrl} />
-//                     <AvatarFallback>{item.name?.slice(0, 2).toUpperCase()}</AvatarFallback>
-//                 </Avatar>
-
-//                 <div>
-//                     <CardTitle className="text-lg font-semibold">{item.name}</CardTitle>
-//                     <p className="text-sm text-muted-foreground">{item.email}</p>
-//                 </div>
-//             </CardHeader>
-
-//             <CardContent className="text-sm text-muted-foreground mt-3 space-y-1 p-0">
-//                 <p><strong>Address:</strong> {item.address}</p>
-//                 <p><strong>Birthdate:</strong> {item.birthdate}</p>
-//             </CardContent>
-//         </Card>
-//     );
-// }
-
-
-
-
-
-
-
-
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { User } from "@/hooks/useUsers";
@@ -79,7 +40,7 @@ export function FeedCard({ item }: FeedCardProps) {
     );
 }
 
-/* A nice reusable row component for cleaner code */
+/*  Reusable Inforow component */
 function InfoRow({ label, value }: { label: string; value: string }) {
     return (
         <div className="flex items-start gap-2">
