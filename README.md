@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+# 📰 Feedly
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive **user feed app** built with **React, Vite, and TypeScript**.  
+Feedly is a playground to showcase real-world frontend engineering techniques, including state management, infinite scrolling, search, and smooth UI animations.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📝 Project Details
 
-## React Compiler
+- **Duration:** ~3 days (part-time)
+- **Focus:** Infinite scrolling, API mocking, search functionality, responsive layouts, and modern frontend engineering practices
+- **Role:** Frontend Engineer
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🌗 **Light / Dark Mode** → Switch seamlessly between themes
+- 📱 **Responsive Layout** → Works on all screen sizes
+- 🔎 **Search Users** → Debounced search by name or email
+- ⚡ **Infinite Scrolling** → Load users dynamically as you scroll
+- 💡 **Loading Skeletons** → Visual feedback while fetching data
+- 🔄 **Retry on Failure** → Graceful error handling
+- 🎨 **Smooth Animations** → Powered by **Framer Motion**
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠 Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- ⚛️ [React](https://react.dev/) + [Vite](https://vitejs.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- 📦 [TanStack Query](https://tanstack.com/query/latest) — infinite scroll, caching, and data synchronization
+- 🧩 [MSW](https://mswjs.io/) — API mocks for development and testing
+- 👀 [React Intersection Observer](https://github.com/thebuilder/react-intersection-observer) — detect scroll position for infinite loading
+- 🎨 [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) — modern UI components
+- 🎬 [Framer Motion](https://www.framer.com/motion/) — animations and micro-interactions
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the repo
+
+```bash
+git clone https://github.com/ali-mahmoud24/feedly.git
+cd feedly
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2️⃣ Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3️⃣ Run development server
+
+```bash
+npm run dev
+```
+
+### 4️⃣ Build for production
+
+```bash
+npm run build
+```
+
+### 5️⃣ Preview production build
+
+```bash
+npm run preview
+```
+
+---
+
+## 🔗 Links
+
+- 🌐 Live Demo: [Feedly](https://ali-mahmoud24.github.io/feedly/)
+- 📦 GitHub Repo: [Feedly on GitHub](https://github.com/ali-mahmoud24/feedly)
+
+---
+
+### 📌 Tags
+
+`React` `Vite` `TypeScript` `TanStack Query` `Infinite Scroll` `TailwindCSS` `shadcnUI` `Framer Motion` `Frontend` `UX`
