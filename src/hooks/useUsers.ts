@@ -1,14 +1,8 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import http from '../lib/axios';
+import http from '@/lib/axios';
 
-export type User = {
-  id: number;
-  name: string;
-  email: string;
-  avatarUrl: string;
-  address: string;
-  birthdate: string;
-};
+import type { User } from '@/types/user';
+
 
 type Pagination = {
   total: number;
