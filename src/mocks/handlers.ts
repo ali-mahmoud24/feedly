@@ -1,5 +1,7 @@
 import { http, HttpResponse } from 'msw';
-import { users, type User } from './data';
+
+import { users } from '@/data/users';
+import { type User } from '@/types/user';
 
 // -------------------------
 // Random 300–1000ms delay
