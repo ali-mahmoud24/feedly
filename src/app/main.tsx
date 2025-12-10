@@ -6,7 +6,9 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from './queryClient';
 
 async function start() {
-  if (import.meta.env.DEV) {
+  const shouldUseMock = import.meta.env.DEV || import.meta.env.PROD;
+
+  if (shouldUseMock) {
     const { worker } = await import('../mocks/browser');
     await worker.start({
       serviceWorker: {
