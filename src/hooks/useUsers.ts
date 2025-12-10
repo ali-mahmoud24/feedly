@@ -25,11 +25,15 @@ type ApiResponse = {
   pagination: Pagination;
 };
 
-const fetchUsersPage = async (offset: number): Promise<ApiResponse> => {
+const fetchUsersPage = async (
+  offset: number,
+  query: string
+): Promise<ApiResponse> => {
   const res = await http.get('/users', {
     params: {
       limit: 20, // default page size
       offset,
+      q: query || undefined,
     },
   });
   return res.data;
@@ -37,16 +41,11 @@ const fetchUsersPage = async (offset: number): Promise<ApiResponse> => {
 
 export const USERS_QK = 'USERS' as const;
 
-export function useUsersInfiniteQuery() {
+export function useUsersInfiniteQuery(query: string) {
   return useInfiniteQuery({
-    queryKey: [USERS_QK],
+    queryKey: [USERS_QK, query],
     initialPageParam: 0,
-
-    queryFn: ({ pageParam }) => fetchUsersPage(pageParam),
-
-    // getNextPageParam: (lastPage) =>
-    //   lastPage.pagination.hasNext ? lastPage.pagination.nextPage : undefined,
-
+    queryFn: ({ pageParam }) => fetchUsersPage(pageParam, query),
     getNextPageParam: (lastPage) => {
       const pagination = lastPage?.pagination;
 

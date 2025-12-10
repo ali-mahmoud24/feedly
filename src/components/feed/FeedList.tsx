@@ -2,17 +2,12 @@ import { useInView } from "react-intersection-observer";
 import { Button } from "@/components/ui/button";
 import { FeedCard } from "./FeedCard";
 import { useUsersInfiniteQuery } from "@/hooks/useUsers";
-import { SkeletonCard } from "./SkeletonCard";
+import { FeedSkeletonCard } from "./FeedSkeletonCard";
+import { motion } from "framer-motion";
+import { Spinner } from "../ui/Spinner";
 
-function Spinner() {
-  return (
-    <div className="flex justify-center py-4">
-      <div className="w-6 h-6 border-4 border-gray-300 border-t-gray-700 rounded-full animate-spin" />
-    </div>
-  );
-}
 
-export function FeedList() {
+export function FeedList({ search }: { search: string }) {
   const {
     data,
     fetchNextPage,
@@ -20,7 +15,8 @@ export function FeedList() {
     isFetchingNextPage,
     isFetching,
     isError,
-  } = useUsersInfiniteQuery();
+    refetch
+  } = useUsersInfiniteQuery(search);
 
   const { ref } = useInView({
     threshold: 0,
@@ -34,38 +30,45 @@ export function FeedList() {
 
   const pages = data?.pages ?? [];
 
+  // Total items across all pages
+  const totalItems = pages.reduce((acc, page) => acc + page.data.length, 0);
+
+
   return (
     <>
       {/* Initial Loading */}
-      {isFetching && pages.length === 0 &&
+      {isFetching && totalItems === 0 && (
         <>
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />
-
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />
-
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />
+          {Array.from({ length: 9 }).map((_, i) => (
+            <FeedSkeletonCard key={i} />
+          ))}
         </>
-      }
+      )}
 
-      {/* No items found */}
-      {pages.length === 0 && !isFetching && !isError && (
-        <p className="text-center text-sm text-muted-foreground col-span-full">
-          No items found.
-        </p>
+      {/* No items found (animated) */}
+      {!isFetching && !isError && totalItems === 0 && (
+        <motion.div
+          className="text-center text-sm text-muted-foreground col-span-full py-8"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          No users found, try a different search.
+        </motion.div>
       )}
 
       {/* Feed Items */}
       {pages.map((page) =>
         page.data.map((item) => (
-          <div key={item.id} className="break-inside-avoid">
+          <motion.div
+            key={item.id}
+            className="break-inside-avoid"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+          >
             <FeedCard item={item} />
-          </div>
+          </motion.div>
         ))
       )}
 
@@ -82,7 +85,7 @@ export function FeedList() {
           <p className="text-sm text-red-600">
             Something went wrong while fetching the feed.
           </p>
-          <Button variant="outline" onClick={() => fetchNextPage()}>
+          <Button variant="outline" onClick={() => refetch()}>
             Retry
           </Button>
         </div>
@@ -92,7 +95,7 @@ export function FeedList() {
       {hasNextPage && <div ref={ref} className="h-1 col-span-full" />}
 
       {/* End Of Feed */}
-      {!hasNextPage && !isFetchingNextPage && pages.length > 0 && (
+      {!isFetchingNextPage && totalItems > 0 && !hasNextPage && (
         <div className="col-span-full py-6 flex flex-col items-center text-muted-foreground">
           <div className="text-base font-medium">🎉 You're all caught up</div>
           <div className="text-xs">No more users to load.</div>
